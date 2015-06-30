@@ -1,0 +1,38 @@
+{% extends 'base_site.html' %}
+{% load melissa_tags %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block content %}
+<section class="diary">
+<h1 class="diary-name">Melissa</h1>
+    <div class="container">
+        <div class="col-md-8">
+            {% for page in object_list %}
+                <article class="page">
+                    <time><i class="fa fa-star-o"></i> {{ page.date }} <i class="fa fa-star-o"></i></time>
+                    <h2>{{ page.title }}</h2>
+                    {{ page.text | safe }}
+                </article>
+            {% endfor %}
+            {% if is_paginated %}
+                <nav>
+                    <ul class="pager">
+                        <li class="previous{% if not page_obj.has_previous %} disabled{% endif %}">
+                            <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">« precedenti</a>
+                        </li>
+                        <li class="next{% if not page_obj.has_next %} disabled{% endif %}">
+                            <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">successive »</a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            {% melissa_archive %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

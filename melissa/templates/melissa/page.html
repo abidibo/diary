@@ -1,0 +1,23 @@
+{% extends 'base_site.html' %}
+{% load melissa_tags %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block content %}
+<section class="diary">
+<h1 class="diary-name">Melissa</h1>
+    <div class="container">
+        <div class="col-md-8">
+            <article class="page">
+                <time>{{ object.date }}</time>
+                <h2>{{ object.title }}</h2>
+                {{ object.text | safe }}
+            </article>
+        </div>
+        <div class="col-md-4">
+            {% melissa_archive %}
+        </div>
+    </div>
+</section>
+{% endblock %}

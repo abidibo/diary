@@ -1,0 +1,33 @@
+.navbar-fixed-top {
+    transition: all 0.2s ease;
+    background-color: #222 !important;
+    a {
+        color: #fff !important;
+    }
+    .navbar-header {
+        width: 100%;
+        button {
+            z-index: 100;
+        }
+    }
+}
+.navbar .navbar-brand {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 18px;
+    left: 0;
+    right: 0;
+    color: #ffff00 !important;
+}
+@media(min-width:@screen-sm) {
+    .navbar .navbar-brand {
+        font-size: 28px;
+    }
+}
+@media(min-width:@screen-md) {
+    .navbar .navbar-brand {
+        font-size: 36px;
+    }
+}

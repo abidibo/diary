@@ -1,0 +1,37 @@
+<section>
+    <h1>Archivio</h1>
+    <div class="tree">
+        <ul class="" id="page_tree">
+        {% for page in pages %}
+            {% ifchanged page.date|date:"Y" %}
+                {% if page != pages.0 %}
+                    </ul></li></ul>
+                {% endif %}
+            <li><span class="year">{{ page.date|date:"Y" }}</span><ul>
+            <li><span class="month">{{ page.date|date:"M" }}</span><ul>
+            {% endifchanged %}
+            {% ifchanged page.date|date:"M" %}
+                    {% ifchanged page.date|date:"Y" %}
+                    {% else %}
+                        </ul></li>
+                        <li><span class="month">{{ page.date|date:"M" }}</span><ul>
+                    {% endifchanged %}
+            {% endifchanged %}
+                <li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+            
+        {% endfor %}
+        </ul></li></ul></li>
+        </ul>
+    </div>
+    <script>
+    (function ($) {
+        $('.tree li + li li').hide();
+        $('.tree li').on('click', function (e) {
+            var children = $(this).find('> ul > li');
+            if (children.is(":visible")) children.hide('fast');
+            else children.show('fast');
+            e.stopPropagation();
+        });
+    })(jQuery);
+    </script>
+</section>
